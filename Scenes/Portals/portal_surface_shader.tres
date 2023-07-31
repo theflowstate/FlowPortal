@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://mfn1b4ju22m5"]
+
+[ext_resource type="Shader" path="res://Scenes/Portals/world_portal.gdshader" id="1_ijx62"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_c8xnv"]
+viewport_path = NodePath("PortalMesh/SubViewport")
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_ijx62")
+shader_parameter/tex = SubResource("ViewportTexture_c8xnv")

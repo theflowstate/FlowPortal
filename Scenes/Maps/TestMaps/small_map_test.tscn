@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://brrws8e5b5iw7"]
+
+[ext_resource type="PackedScene" uid="uid://c7jb3rcayffgx" path="res://Scenes/Portals/world_portal.tscn" id="1_sf62f"]
+
+[node name="SmallMapTest" type="Node3D"]
+
+[node name="MapGeometry" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="MapGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -0.1, 0)
+size = Vector3(16, 0.2, 10)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="MapGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+polygon = PackedVector2Array(2, 0, -10, 0, -10, 1, -9, 2, -8, 2, -8, 3, -5, 3, -5, 6, -3, 6, -3, 3, -1, 3, 0, 2, 1, 2, 2, 1)
+depth = 4.0
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="MapGeometry/CSGPolygon3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+operation = 2
+size = Vector3(1, 2, 0.4)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="MapGeometry/CSGPolygon3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -5, 4, -1)
+operation = 2
+size = Vector3(1, 2, 0.4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="MapGeometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 4, -4.5)
+size = Vector3(16, 8, 1)
+
+[node name="WorldPortal" parent="." instance=ExtResource("1_sf62f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -1.1)
+
+[node name="WorldPortal2" parent="." instance=ExtResource("1_sf62f")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.9, 4, -2)

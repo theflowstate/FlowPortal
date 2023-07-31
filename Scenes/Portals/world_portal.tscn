@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7jb3rcayffgx"]
+
+[ext_resource type="Script" path="res://Scenes/Portals/world_portal.gd" id="1_chq57"]
+[ext_resource type="Material" uid="uid://mfn1b4ju22m5" path="res://Scenes/Portals/portal_surface_shader.tres" id="1_hvdxu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fwygy"]
+flip_faces = true
+size = Vector3(0.99, 1.99, 0.19)
+
+[sub_resource type="PrismMesh" id="PrismMesh_e3cde"]
+size = Vector3(1, 2, 0.16)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_x3xgw"]
+top_radius = 0.0
+bottom_radius = 0.25
+height = 1.0
+
+[node name="WorldPortal" type="Node3D"]
+script = ExtResource("1_chq57")
+
+[node name="PortalMesh" type="MeshInstance3D" parent="."]
+layers = 2
+material_override = ExtResource("1_hvdxu")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_fwygy")
+
+[node name="SubViewport" type="SubViewport" parent="PortalMesh"]
+size = Vector2i(1920, 1080)
+
+[node name="Camera3D" type="Camera3D" parent="PortalMesh/SubViewport"]
+cull_mask = 1048573
+fov = 90.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PortalMesh/SubViewport/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.67099, 0)
+visible = false
+mesh = SubResource("PrismMesh_e3cde")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PortalMesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.3, -0.5)
+visible = false
+mesh = SubResource("CylinderMesh_x3xgw")
+skeleton = NodePath("../..")
+
+[node name="Helper" type="Marker3D" parent="."]
